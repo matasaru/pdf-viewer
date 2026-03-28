@@ -49,7 +49,7 @@ async function renderPage(pageNum) {
         lw.className = 'link-wrap';
         lw.textContent = href;
         lw.addEventListener('click', () => {
-            viewer.querySelector(`[data-link='${index}']`).scrollIntoView({behavior: 'smooth', block: 'start'});
+            viewer.querySelector(`[data-link='${index}']`).scrollIntoView({behavior: 'smooth', block: 'center'});
         });
         sidebar.appendChild(lw);
 
