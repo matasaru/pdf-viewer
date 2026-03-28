@@ -10,6 +10,7 @@ const loadMsg = document.getElementById('loadingMsg');
 let pdfDoc = null;
 let scale = 1.4;
 let currentPage = 1;
+let currentLink = null;
 
 function setLoading(msg) {
     loadMsg.textContent = msg;
@@ -49,7 +50,12 @@ async function renderPage(pageNum) {
         lw.className = 'link-wrap';
         lw.textContent = href;
         lw.addEventListener('click', () => {
-            viewer.querySelector(`[data-link='${index}']`).scrollIntoView({behavior: 'smooth', block: 'center'});
+            if (currentLink) {
+                currentLink.className = '';
+            }
+            currentLink = viewer.querySelector(`[data-link='${index}']`);
+            currentLink.className = 'link-overlay';
+            currentLink.scrollIntoView({behavior: 'smooth', block: 'center'});
         });
         sidebar.appendChild(lw);
 
@@ -62,7 +68,6 @@ async function renderPage(pageNum) {
         const height = Math.abs(cvpPt[3] - cvpPt[1]);
 
         const hl = document.createElement('div');
-        hl.className = 'link-overlay';
         hl.dataset.link = index;
         hl.style.left = left + 'px';
         hl.style.top = top + 'px';
