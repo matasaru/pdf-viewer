@@ -62,9 +62,9 @@ async function renderPage(pageNum) {
         
         const [x1, y1, x2, y2] = link.rect;
         const cvpPt = vp.convertToViewportRectangle([x1, y1, x2, y2]);
-        const left = Math.min(cvpPt[0], cvpPt[2]);
+        const left = Math.min(cvpPt[0], cvpPt[2]) - 4;
         const top = Math.min(cvpPt[1], cvpPt[3]);
-        const width = Math.abs(cvpPt[2] - cvpPt[0]);
+        const width = Math.abs(cvpPt[2] - cvpPt[0]) + 8;
         const height = Math.abs(cvpPt[3] - cvpPt[1]);
 
         const hl = document.createElement('div');
